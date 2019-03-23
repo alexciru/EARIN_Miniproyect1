@@ -79,9 +79,7 @@ def A_search(graph):
 #Heuristic function
 
 # Creo que para la funcion heuristica deberiamos comprobar cuantas casillas estan bien,
-# cuantas estan mal y cuantas estan sin completar.
-
-
+# cuantas estan mal y cuantas estan sin completar
 
 
     
