@@ -53,16 +53,35 @@ class Game:
 
 
 
-
-
-
-
-
 #Algorith
-def breadth_first_search
-def A_search
+
+
+def breadth_first_search(graph, solution):
+    # This algorithm will be called in the informed search
+    queue, visited = set()
+    while queue
+        node = queue.pop(0)
+        if vertex not in visited:
+            visited.add(node)
+            #check solution
+
+            #TODO bfs
+
+            #queue.extend(graph[vertex] - visited)
+    
+    return visited
+
+def A_search(graph):
+    # This algorithm will be called in the formed search
+    return
 
 
 #Heuristic function
+
+# Creo que para la funcion heuristica deberiamos comprobar cuantas casillas estan bien,
+# cuantas estan mal y cuantas estan sin completar.
+
+
+
 
     
