@@ -33,7 +33,7 @@ def main():
 
 def function():
   print("hayyyyyyy")
-  name = 'pepe'
+  
   return
 
 
