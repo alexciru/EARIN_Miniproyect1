@@ -18,7 +18,7 @@ and run Python code; now you just need to learn Python!
 """
 
 import sys
-global name = None
+global name
 # Define a main() function that prints a little greeting.
 def main():
 
