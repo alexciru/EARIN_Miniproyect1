@@ -2,8 +2,6 @@
 class Node:
     # This class represents the node of the graph and have information about the state of the game
     # and the node child if it have one.
-
-
     
     def __init__(self, state):
 
@@ -61,7 +59,18 @@ class Game:
         return
     
 
+class graph:
+    # This class will create the graph with all the states using
+    def __init__(self, initial_game_state):
+        self.root = Node(initial_game_state)
+        self.create_graph()
+        return
 
+    def create_graph(self):
+        #TODO start creating the graph with all the posibles solution that may have
+        return
+
+    
 
 #Algorith
 
