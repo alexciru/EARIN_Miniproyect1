@@ -4,34 +4,44 @@ class Node:
     # and the node child if it have one.
 
 
-    State        # Represented by a matrix the actual state of the game
-    leftChild    # The left child , has the same state as the parent but with an 0 in the next following blank space
-    rightChild   # The right child , has the same state as the parent but with an 1 in the next following blank space
-
+    
     def __init__(self, state):
+
+        self.state = state      # Represented by a matrix the actual state of the game
+        self.left_child  = None # The left child , has the same state as the parent but with an 0 in the next following blank space
+        self.right_child = None # The right child , has the same state as the parent but with an 1 in the next following blank space
         return
 
-    def create_leftChild(self, childState):
-        
+    def create_leftChild(self, parent_state):
+
+        for row in parent_state:
+            for space in row:
+                if space == -1:
+                    space = 0
+                    new_child = Node(parent_state)
+                    self.left_child = new_child
+                    return
+
+        #if dont found in the loop it means the matrix is completed
+        #TODO throw exception
         return
 
-    def create_rightChild(self, childState):
+    def create_rightChild(self, parent_state):
         return
 
 
 class Game:
 
-    initial_state 
-
-    def __init__(self, numberRows):
+    def __init__(self):
+        self.initial_state = None #todo change game creator
         # we should save different games with different number of rows and different number of blank spaces
         return
 
     def checksolution(self, solution):
         #this function should check if the answer is correct or no
-        self.check_collum(self, solution)
-        self.check_row(self, solution)
-        self.check_if_unique(self, solution)
+        self.check_collum(solution)
+        self.check_row(solution)
+        self.check_if_unique(solution)
         return
 
 
@@ -57,19 +67,7 @@ class Game:
 
 
 def breadth_first_search(graph, solution):
-    # This algorithm will be called in the informed search
-    queue, visited = set()
-    while queue
-        node = queue.pop(0)
-        if vertex not in visited:
-            visited.add(node)
-            #check solution
-
-            #TODO bfs
-
-            #queue.extend(graph[vertex] - visited)
-    
-    return visited
+    return
 
 def A_search(graph):
     # This algorithm will be called in the formed search
