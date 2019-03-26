@@ -66,8 +66,16 @@ class graph:
         self.create_graph()
         return
 
-    def create_graph(self):
+    def create_graph(self): #MAYBE THIS FUNCTION SHOULD BE RECURSIVE
+
         #TODO start creating the graph with all the posibles solution that may have
+        queue = []
+        queue.append(self.root)
+
+        #loop
+            self.root.create_leftChild(self.root.state)
+            self.root.create_rightChild(self.root.state)
+            queue.append(self)
         return
 
     

@@ -2,14 +2,12 @@
 import Node
 def main():
     
-
-    
     # We should start with a initial game
 
     # Create the Graph for the game
 
     # start looking for the answers
-
+    return
 
 
 
