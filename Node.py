@@ -1,4 +1,4 @@
-    
+import copy
 
 class Node:
     # This class represents the node of the graph and have information about the state of the game
@@ -11,35 +11,41 @@ class Node:
         return
 
     def create_left_child(self):
-
-        new_state = self.state
-        print("creando hijo left")
-        for row in new_state:
-            for space in row:
-                if space == -1:
-                    space = 0
-                    new_child = Node(new_state)
-                    self.left_child = new_child
-                    return 
-
-        #if dont found in the loop it means the matrix is completed
-        self.left_child = None
-        return
-
-    def create_right_child(self):
-        new_state = self.state
-        print("creando hijo right")
-
-        n_row    = 0
-        n_collum = 0
-        for row in new_state:
+        new_state = copy.deepcopy(self.state) # Create new matrix
+        n_row, n_collum   = 0, 0  # intialize values to find the blank space
+        
+        for row in new_state:   
             n_collum = 0
             for space in row:
                 if space == -1:
                     print("-1 in {} - {}" .format(n_row, n_collum))
-                    new_state[n_row][n_collum] = 1
+                    
+                    new_state[n_row][n_collum] = 0  # We chance the value to 0
                     new_child = Node(new_state)
-                    self.right_child = new_child   #we add the child with the state changed
+                    self.left_child = new_child   # We add the child with the state changed
+                    return 
+                n_collum += 1
+            n_row += 1
+        
+        #if dont fonund free space means the matrix is completed
+        print("there is no more child to create")
+        self.left_child = None
+        return
+
+    def create_right_child(self):
+
+        new_state = copy.deepcopy(self.state) # Create new matrix
+    
+        n_row, n_collum   = 0, 0  # intialize values to find the blank space
+        
+        for row in new_state:   
+            n_collum = 0
+            for space in row:
+                if space == -1:
+                    # print("-1 in {} - {}" .format(n_row, n_collum))
+                    new_state[n_row][n_collum] = 1  # We chance the value to 1
+                    new_child = Node(new_state)
+                    self.right_child = new_child   # We add the child with the state changed
                     return 
                 n_collum += 1
             n_row += 1
@@ -49,8 +55,9 @@ class Node:
         return
 
 
-    def create_node_child_rec(self, parent_state):
-        print(" ueeee")
+    def create_node_child_rec(self):
+        if self == None:
+            return
         self.create_left_child()
         if self.left_child == None:
             print("No existe hijo izq")
@@ -60,8 +67,8 @@ class Node:
         if self.right_child == None:
             return
 
-        self.create_node_child_rec(self.left_child)
-        self.create_node_child_rec(self.left_child)
+        self.left_child.create_node_child_rec()
+        self.right_child.create_node_child_rec()
         return
         
     def print(self):
