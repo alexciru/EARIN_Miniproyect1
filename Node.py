@@ -3,7 +3,6 @@
 class Node:
     # This class represents the node of the graph and have information about the state of the game
     # and the node child if it have one.
-    
     def __init__(self, state):
 
         self.state = state      # Represented by a matrix the actual state of the game
@@ -52,8 +51,19 @@ class Node:
         self.create_node_child_rec(self.left_child)
         return
         
+    def print(self):
+        print("State: " + str(self.state))
+        if self.right_child == None:
+            return
 
-class graph:
+        self.right_child.print
+        self.left_child.print
+
+        return
+        
+
+
+class Graph:
     # This class will create the graph with all the states using
     def __init__(self, initial_game_state):
         self.root = Node(initial_game_state)
