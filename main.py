@@ -19,14 +19,6 @@ def main():
     test_root = Node(testgame)
     test_root.print()
 
-    
-    # print("")
-    # test_root.create_left_child()
-    # test_root.print()
-
-    # print("")
-    # test_root.create_right_child()
-    # test_root.print()
     print("We execute the recursive funtion")
 
     test_root.create_node_child_rec()
