@@ -10,13 +10,15 @@ class Node:
         self.right_child = None # The right child , has the same state as the parent but with an 1 in the next following blank space
         return
 
-    def create_left_child(self, parent_state):
+    def create_left_child(self):
 
-        for row in parent_state:
+        new_state = self.state
+        print("creando hijo left")
+        for row in new_state:
             for space in row:
                 if space == -1:
                     space = 0
-                    new_child = Node(parent_state)
+                    new_child = Node(new_state)
                     self.left_child = new_child
                     return 
 
@@ -24,26 +26,37 @@ class Node:
         self.left_child = None
         return
 
-    def create_right_child(self, parent_state):
-        for row in parent_state:
+    def create_right_child(self):
+        new_state = self.state
+        print("creando hijo right")
+
+        n_row    = 0
+        n_collum = 0
+        for row in new_state:
+            n_collum = 0
             for space in row:
                 if space == -1:
-                    space = 1
-                    new_child = Node(parent_state)
+                    print("-1 in {} - {}" .format(n_row, n_collum))
+                    new_state[n_row][n_collum] = 1
+                    new_child = Node(new_state)
                     self.right_child = new_child   #we add the child with the state changed
                     return 
+                n_collum += 1
+            n_row += 1
         
         #if dont fonund free space means the matrix is completed
-        self.create_rightChild = None
+        self.right_child = None
         return
 
 
-    def create_node_child_rec(self, new_state):
-        self.create_left_child
+    def create_node_child_rec(self, parent_state):
+        print(" ueeee")
+        self.create_left_child()
         if self.left_child == None:
+            print("No existe hijo izq")
             return
 
-        self.create_right_child
+        self.create_right_child()
         if self.right_child == None:
             return
 
@@ -52,12 +65,16 @@ class Node:
         return
         
     def print(self):
-        print("State: " + str(self.state))
-        if self.right_child == None:
+        if self == None:
             return
 
-        self.right_child.print
-        self.left_child.print
+        print("State: " + str(self.state))
+        
+        if self.left_child != None:
+            self.left_child.print()
+
+        if self.right_child != None:
+            self.right_child.print()
 
         return
         
