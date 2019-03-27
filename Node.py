@@ -1,3 +1,4 @@
+    
 
 class Node:
     # This class represents the node of the graph and have information about the state of the game
@@ -10,7 +11,7 @@ class Node:
         self.right_child = None # The right child , has the same state as the parent but with an 1 in the next following blank space
         return
 
-    def create_leftChild(self, parent_state):
+    def create_left_child(self, parent_state):
 
         for row in parent_state:
             for space in row:
@@ -18,16 +19,58 @@ class Node:
                     space = 0
                     new_child = Node(parent_state)
                     self.left_child = new_child
-                    return
+                    return 
 
         #if dont found in the loop it means the matrix is completed
-        #TODO throw exception
+        self.left_child = None
         return
 
-    def create_rightChild(self, parent_state):
+    def create_right_child(self, parent_state):
+        for row in parent_state:
+            for space in row:
+                if space == -1:
+                    space = 1
+                    new_child = Node(parent_state)
+                    self.right_child = new_child   #we add the child with the state changed
+                    return 
+        
+        #if dont fonund free space means the matrix is completed
+        self.create_rightChild = None
+        return
+
+
+    def create_node_child_rec(self, new_state):
+        self.create_left_child
+        if self.left_child == None:
+            return
+
+        self.create_right_child
+        if self.right_child == None:
+            return
+
+        self.create_node_child_rec(self.left_child)
+        self.create_node_child_rec(self.left_child)
+        return
+        
+
+class graph:
+    # This class will create the graph with all the states using
+    def __init__(self, initial_game_state):
+        self.root = Node(initial_game_state)
+        self.create_graph(initial_game_state)
+        return
+
+    def create_graph(self, initial_game_state): 
+        self.root.create_node_child_rec(initial_game_state)
+        
         return
 
     
+        
+
+
+
+
     
 
 #Algorith
