@@ -27,57 +27,7 @@ class Node:
     def create_rightChild(self, parent_state):
         return
 
-
-class Game:
-
-    def __init__(self):
-        self.initial_state = None #todo change game creator
-        # we should save different games with different number of rows and different number of blank spaces
-        return
-
-    def checksolution(self, solution):
-        #this function should check if the answer is correct or no
-        self.check_collum(solution)
-        self.check_row(solution)
-        self.check_if_unique(solution)
-        return
-
-
-    def check_row(self, solution):
-        # this function shouold check if there is the same number of 0 and 1 in a row and see if
-        # there is no more that two same digits togueter
-
-        return
-
-    def check_collum(self, solution):
-        # this function shouold check if there is the same number of 0 and 1 in a collum and see if
-        # there is no more that two same digits togueter
-        return
-
-    def check_if_unique(self, solution):
-        #check if every row and every collum is unique
-        return
     
-
-class graph:
-    # This class will create the graph with all the states using
-    def __init__(self, initial_game_state):
-        self.root = Node(initial_game_state)
-        self.create_graph()
-        return
-
-    def create_graph(self): #MAYBE THIS FUNCTION SHOULD BE RECURSIVE
-
-        #TODO start creating the graph with all the posibles solution that may have
-        queue = []
-        queue.append(self.root)
-
-        #loop
-            self.root.create_leftChild(self.root.state)
-            self.root.create_rightChild(self.root.state)
-            queue.append(self)
-        return
-
     
 
 #Algorith
