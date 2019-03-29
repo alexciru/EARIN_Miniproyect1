@@ -14,9 +14,9 @@ class Game:
 
 
     def check_row(self, solution):
-        # this function shouold check if there is the same number of 0 and 1 in a row and see if
+        # this function should check if there is the same number of 0 and 1 in a row and see if
         # there is no more that two same digits togueter
-
+        #me come la polla
         return
 
     def check_collum(self, solution):
