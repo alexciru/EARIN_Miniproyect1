@@ -3,6 +3,7 @@ import copy
 class Node:
     # This class represents the node of the graph and have information about the state of the game
     # and the node child if it have one.
+
     def __init__(self, state):
 
         self.state = state      # Represented by a matrix the actual state of the game
@@ -105,7 +106,22 @@ class Graph:
 #Algorith
 
 
-def breadth_first_search(graph, solution):
+def breadth_first_search(root, solution):
+    queue = []   # we will store all the nodes that we didnt visit yet
+    queue.append(root)
+
+    while queue:
+        node = queue.pop(0)
+        
+        if node.state == solution:
+            print("Solution found")
+            return node
+        else :
+            queue.append(node.left_child)
+            queue.append(node.right_child)
+        
+    print("Queue empty, solution not found")
+
     return
 
 def A_search(graph):
