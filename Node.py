@@ -126,6 +126,11 @@ def breadth_first_search(root, solution):
 
 def A_search(root, solution):
     # This algorithm will be called in the formed search
+    # TODO implement A* function
+    """
+    Hay que implementar una cola de prioridades para decidir cual es el siguiente nodo que vamos a acceder
+    usar un diccionario tambien
+    """
     return
 
 
