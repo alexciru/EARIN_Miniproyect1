@@ -124,15 +124,12 @@ def breadth_first_search(root, solution):
 
     return
 
-def A_search(graph):
+def A_search(root, solution):
     # This algorithm will be called in the formed search
     return
 
 
 #Heuristic function
-"""
-
-"""
 # Creo que para la funcion heuristica deberiamos comprobar cuantas casillas estan bien,
 # cuantas estan mal y cuantas estan sin completar
 

@@ -1,7 +1,5 @@
 from Node import *
-#from Node import Graph
-
-from Game import Game
+from Game import *
 
 
 # With this game we should check if the check games function works and how do we create the game
@@ -21,7 +19,8 @@ test_solution = [[ 1, 0, 1, 1, 0, 0],
 
 def main():
 
-
+    game = Game()
+    game.add_game(test_game)
     print("Initial state:  ")
     test_root = Node(test_game)
     test_root.print()
