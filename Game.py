@@ -1,70 +1,90 @@
+from PriorityQueue import PriorityQueue
+from Node import Node
 class Game:
 
     def __init__(self):
-        self.initial_state = None #todo change game creator
+        self.initial_state = None
         self.list_games = []
+        self.list_solutions = []
         # we should save different games with different number of rows and different number of blank spaces
         return
 
     def add_game(self, initial_game_state):
         self.list_games.append(initial_game_state)
 
-    def checksolution(self, solution):
-        #this function should check if the answer is correct or no
-        # TODO completar comprobar solucion
-        return
+    def add_solution(self, solution):
+        self.list_solutions.append(solution)
 
-
-    def check_row(self, solution, n_row):
-        lenght = len(solution)
-        last_element = solution[n_row][0]
-        counter = 1
-        
-        for i in range(1, lenght):
-            if(solution[n_row][i] == last_element):
-                counter += counter
-            else:
-                last_element = solution[n_row][i]
-                counter = 1
-
-            if( counter > 2):
-                print("Element more that 2 elemetns in the [%d][%d] ", n_row, i)
-                # TODO decicdir que hacer cuando encuentra un elemento
-                # this function should check if there is the same number of 0 and 1 in a row and see if
-                # there is no more that two same digits togueter
-
-        print("No elements in the same row")
-        return
+    def print_game(self, index):
+        print("Initial state:")
+        print (self.list_games[index])
+        print("Solution")
+        print (self.list_solutions[index])
 
 
 
-    def check_collum(self, solution, n_collum):
-        lenght = len(solution)
-        last_element = solution[0][n_collum]
-        counter = 1
-        
-        for i in range(1, lenght):
-            if(solution[i][n_collum] == last_element):
-                counter += counter
-            else:
-                last_element = solution[i][n_collum]
-                counter = 1
 
-            if( counter > 2):
-                print("Element more that 2 elemetns in the [%d][%d] ", i, n_collum)
-                # TODO decicdir que hacer cuando encuentra un elemento
-                # this function should check if there is the same number of 0 and 1 in a row and see if
-                # there is no more that two same digits toguete1r
-
-        print("No elements in the same collum")
-        # this function should check if there is the same number of 0 and 1 in a collum and see if
-        # there is no more that two same digits togueter
-        return
-
-
-
-    def check_if_unique(self, solution):
-        # TODO comprobar si las columnas son unicas o no
-        #check if every row and every collum is unique
-        return
     
+
+#Algorith
+
+
+def breadth_first_search(root, solution):
+    nodes_visited = 0
+    queue = []   # we will store all the nodes that we didnt visit yet
+    queue.append(root)
+
+    while queue:
+        node = queue.pop(0)
+        nodes_visited += 1
+        if node.state == solution:
+            return nodes_visited
+        else :
+            queue.append(node.left_child)
+            queue.append(node.right_child)
+        
+    print("Queue empty, solution not found")
+
+    return -1
+
+def A_search(root, solution):
+    nodes_visited = 0
+    priority = []
+    priority.append(root)
+    #TODO implement a priority queue
+    while len(priority):
+        node = priority.pop(0)
+        nodes_visited += 1
+        if(node.state == solution):
+            return nodes_visited
+        
+        right_child = node.right_child
+        left_child  = node.left_child
+
+        if not (left_child == None):
+            #TODO change put in the priority queue
+            value = g_fution(left_child) + heuristic(left_child)
+            priority.append(left_child)
+            value = g_fution(right_child) + heuristic(right_child)
+            priority.append(right_child)
+
+
+    print("Queue empty, solution not found")
+    return -1
+ 
+
+# Heuristic function
+# Heursitic function will check how many error are in the state and 
+# how many blank space are still to be filled
+#
+def heuristic(node):
+    #TODO cambiar function heuristica
+    return 2
+
+
+def g_fution(node):
+    #TODO cambiar g function
+    counter = len(node.state)
+
+    return counter
+

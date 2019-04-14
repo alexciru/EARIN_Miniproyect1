@@ -1,4 +1,4 @@
-from Node import *
+from Node import Node
 from Game import *
 
 
@@ -21,22 +21,22 @@ def main():
 
     game = Game()
     game.add_game(test_game)
-    print("Initial state:  ")
+    game.add_solution(test_solution)
+    
+    
+    game.print_game(0)
     test_root = Node(test_game)
-    test_root.print()
-    print("Solution:")
-    print(test_solution)
-
-
     print("We create the graph with the posible solution")
     test_root.create_node_child_rec()
 
     print("Now we look for the solution with Breadth-First")
-    solution = breadth_first_search(test_root, test_solution)
+    bfs_visited_nodes = breadth_first_search(test_root, test_solution)
+    print("Solution found with BFS visiting " + str(bfs_visited_nodes) + " Nodes")
 
-    if solution:
-        print("The solution is:")
-        solution.print()
+    
+    print("Now we will use the informed search")
+    a_visited_nodes = A_search(test_root, test_solution)
+    print("Solution found with A* visiting " + str(a_visited_nodes) + " Nodes")
 
     return
 
@@ -45,13 +45,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-"""
-testgame = [[ 1, 0, 1, 1, 0, 0],
-            [ 1, 1, 0, 0, 1, 0],
-            [ 0, 0, 1, 1, 0, 1],
-            [ 0, 1, 0, 1, 0, 1],
-            [ 1, 0, 1, 0, 1, 0],
-            [ 0, 1, 0, 0, 1, 1]]
-"""
