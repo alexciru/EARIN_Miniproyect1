@@ -55,7 +55,6 @@ def A_search(root, solution):
         min_value = priority[0][0]
         min_index = 0
         for i in range(0, len(priority)):
-            print(priority[i][0])
             if  priority[i][0] < min_value:
                 min_value = priority[i][0]
                 min_index = i

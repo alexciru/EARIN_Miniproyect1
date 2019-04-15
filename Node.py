@@ -82,13 +82,16 @@ class Node:
         if self == None:
             return
 
-        print("State: " + str(self.state))
-        if self.left_child != None:
-            self.left_child.print()
-
-        if self.right_child != None:
-            self.right_child.print()
-
+        for i in range(0, len(self.state)):
+            print("[", end = "")
+            for j in range (0, len(self.state[0])):
+               
+                print(" " if self.state[i][j] == -1 else str(self.state[i][j]) , end="")
+                
+                print(",", end = "")
+            print("]")
         return
+
+    
         
 
