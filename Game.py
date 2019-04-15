@@ -1,4 +1,9 @@
-from PriorityQueue import PriorityQueue
+# File: Game.py
+# Authors: Alejandro Cirugeda & Juancarlos Quintana
+# Description:
+#
+#
+from queue import PriorityQueue
 from Node import Node
 class Game:
 
@@ -23,12 +28,6 @@ class Game:
 
 
 
-
-    
-
-#Algorith
-
-
 def breadth_first_search(root, solution):
     nodes_visited = 0
     queue = []   # we will store all the nodes that we didnt visit yet
@@ -50,10 +49,19 @@ def breadth_first_search(root, solution):
 def A_search(root, solution):
     nodes_visited = 0
     priority = []
-    priority.append(root)
-    #TODO implement a priority queue
+    priority.append((1, root))
+
     while len(priority):
-        node = priority.pop(0)
+        min_value = priority[0][0]
+        min_index = 0
+        for i in range(0, len(priority)):
+            print(priority[i][0])
+            if  priority[i][0] < min_value:
+                min_value = priority[i][0]
+                min_index = i
+        
+        tupla = priority.pop(min_index)
+        node = tupla[1]
         nodes_visited += 1
         if(node.state == solution):
             return nodes_visited
@@ -62,11 +70,12 @@ def A_search(root, solution):
         left_child  = node.left_child
 
         if not (left_child == None):
-            #TODO change put in the priority queue
-            value = g_fution(left_child) + heuristic(left_child)
-            priority.append(left_child)
-            value = g_fution(right_child) + heuristic(right_child)
-            priority.append(right_child)
+            value = g_fution(left_child) + heuristic(left_child, solution)
+            #print("Value = " + str(value))
+            priority.append((value, left_child))
+
+            value = g_fution(right_child) + heuristic(right_child, solution)
+            priority.append((value, right_child))
 
 
     print("Queue empty, solution not found")
@@ -74,17 +83,20 @@ def A_search(root, solution):
  
 
 # Heuristic function
-# Heursitic function will check how many error are in the state and 
-# how many blank space are still to be filled
-#
-def heuristic(node):
-    #TODO cambiar function heuristica
-    return 2
+# Heursitic function will compare the actual state with the solution and count 
+# the numer of errors 
+def heuristic(node, solution):
+    err_counter = 0
+    lenght = len(node.state)
+    for i in range(0, lenght):
+        for j in range(0, lenght):
+            if(node.state[i][j] != solution[i][j]):
+                err_counter += 1  
+
+    return err_counter
 
 
 def g_fution(node):
-    #TODO cambiar g function
-    counter = len(node.state)
 
-    return counter
+    return node.depth
 
